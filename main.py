@@ -2,7 +2,7 @@ from speedtest import SpeedTest
 
 ping = "10"  # do not change it's only used for the signature
 upload_mbps = min(float(input("Upload Mbps: ")), 9999)  # max 9999
-download_mbps = min(float(input("Upload Mbps: ")), 9999)  # max 9999
+download_mbps = min(float(input("Download Mbps: ")), 9999)  # max 9999
 key = "817d699764d33f89c"
 upload_ping = input("Upload latency: ")
 download_ping = input("Download latency: ")
