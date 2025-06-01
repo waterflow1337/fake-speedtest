@@ -237,10 +237,11 @@ export class SpeedTestGenerator {
 
       const payload = this.buildPayload();
       
-      const response = await fetch('https://www.speedtest.net/api/results.php', {
+      const response = await fetch('https://cors-anywhere.herokuapp.com/https://www.speedtest.net/api/results.php', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(payload),
+        mode: 'cors',
         signal: AbortSignal.timeout(30000), // 30 second timeout
       });
 
