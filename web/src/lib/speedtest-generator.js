@@ -24,9 +24,9 @@ export class SpeedTestGenerator {
     this.upload = String(parseFloat(config.uploadMbps) * 1000);
     this.download = String(parseFloat(config.downloadMbps) * 1000);
     this.key = config.key;
-    this.uploadPing = config.uploadPing;
-    this.downloadPing = config.downloadPing;
-    this.idleLatency = config.idleLatency;
+    this.uploadPing = parseInt(config.uploadPing);
+    this.downloadPing = parseInt(config.downloadPing);
+    this.idleLatency = parseInt(config.idleLatency);
     this.serverId = config.serverId;
     
     this.signature = this.generateSignature();
@@ -90,20 +90,10 @@ export class SpeedTestGenerator {
   }
 
   /**
-   * Get the current timestamp in milliseconds
-   * @returns {number} Current timestamp
-   */
-  getTimestamp() {
-    return Date.now();
-  }
-
-  /**
    * Build the complete JSON payload for the speedtest API
    * @returns {Object} Complete speedtest data object
    */
   buildPayload() {
-    const timestamp = this.getTimestamp();
-    
     return {
       app: {
         sdk: {
@@ -189,7 +179,7 @@ export class SpeedTestGenerator {
           },
           count: 0,
           elapsed: 0,
-          timestamp: timestamp,
+          timestamp: 0,
         },
       },
       uploadLatency: {
@@ -204,7 +194,7 @@ export class SpeedTestGenerator {
           },
           count: 0,
           elapsed: 0,
-          timestamp: timestamp,
+          timestamp: 0,
         },
       },
       servers: {},
@@ -237,7 +227,8 @@ export class SpeedTestGenerator {
 
       const payload = this.buildPayload();
       
-      const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.speedtest.net/api/results.php'), {
+      const apiUrl = `${window.location.origin}/api/speedtest`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(payload),

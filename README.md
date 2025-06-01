@@ -7,6 +7,7 @@ Generate custom fake speedtest results using the speedtest.net API format.
 - React 18
 - Vite 6.x
 - TailwindCSS
+- Express.js (proxy server)
 - speedtest.net API
 
 ## Quick Start
@@ -21,22 +22,23 @@ Generate custom fake speedtest results using the speedtest.net API format.
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/fake-speedtest-generator.git
-   cd fake-speedtest-generator/web
+   cd fake-speedtest-generator
    ```
 
 2. **Install dependencies**
    ```bash
    npm install
+   cd web && npm install && cd ..
    ```
 
-3. **Start development server**
+3. **Start the application**
    ```bash
-   npm run dev
+   npm start
    ```
 
 4. **Open browser**
    ```
-   http://localhost:5173
+   http://localhost:3001
    ```
 
 ## Project Structure
@@ -56,10 +58,12 @@ fake-speedtest-generator/
 │   │   │   └── globals.css       # Styles
 │   │   ├── App.jsx              # Main component
 │   │   └── main.jsx             # Entry point
-│   ├── package.json             # Dependencies
+│   ├── package.json             # Web dependencies
 │   ├── vite.config.js           # Vite config
 │   ├── tailwind.config.js       # Tailwind config
 │   └── postcss.config.js        # PostCSS config
+├── proxy-server.js              # Express proxy server
+├── package.json                 # Server dependencies
 ├── main.py                      # Original Python script
 ├── speedtest.py                 # Original Python module
 ├── requirements.txt             # Python dependencies
@@ -83,26 +87,34 @@ const config = {
 };
 ```
 
-## Build
+## Development
 
-### Development
+### Web app only (with hot reload)
+```bash
+cd web
+npm run dev
+```
+
+### Server only (with nodemon)
 ```bash
 npm run dev
 ```
 
-### Production
+### Full application
 ```bash
-npm run build
-```
-
-### Preview
-```bash
-npm run preview
+npm start
 ```
 
 ## Deploy
 
-Build creates a `dist` folder ready for static hosting (Vercel, Netlify, etc.).
+The application includes both frontend and backend, so deploy to platforms that support Node.js:
+- Heroku
+- Railway
+- Render
+- DigitalOcean App Platform
+- VPS with Node.js
+
+Set `PORT` environment variable for production.
 
 ## Troubleshooting
 

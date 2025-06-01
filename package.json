@@ -1,0 +1,20 @@
+{
+  "name": "fake-speedtest-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server for fake speedtest generator",
+  "main": "proxy-server.js",
+  "scripts": {
+    "build": "cd web && npm run build",
+    "start": "npm run build && node proxy-server.js",
+    "dev": "nodemon proxy-server.js",
+    "dev:web": "cd web && npm run dev"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
