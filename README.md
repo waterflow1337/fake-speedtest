@@ -1,5 +1,7 @@
 # Fake Speedtest Generator
 
+**🌐 Live Site: [https://fakespeedtest.com](https://fakespeedtest.com)**
+
 Generate custom fake speedtest results using the speedtest.net API format.
 
 ## Tech Stack
